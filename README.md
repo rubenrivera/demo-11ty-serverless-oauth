@@ -1,4 +1,4 @@
-Add Stack Overflow as Oauth Provider
+# Add Stack Overflow as Oauth Provider
 
 
 ---
