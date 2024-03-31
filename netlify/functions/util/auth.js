@@ -44,17 +44,38 @@ class OAuth {
       Object.assign(cfg, providers.slack);
     } else if(this.provider === "linkedin") {
       Object.assign(cfg, providers.linkedin);
+    } else if(this.provider === "stackoverflow") {
+      Object.assign(cfg, providers.stackoverflow);  
     } else {
-      throw new Error("Invalid provider passed to OAuth. Currently only `netlify`, `github`, `gitlab`, `slack` or `linkedin` are supported.")
+      const list = [
+        "netlify",
+        "github",
+        "gitlab",
+        "slack",
+        "linkedin",
+        "stackoverflow"
+      ].join(",").replace(/,(?=[^,]+$)/, ' or ');
+      throw new Error(`Invalid provider passed to OAuth. Currently only ${list} are supported.`)
     }
 
     cfg.clientId = process.env[cfg.clientIdKey];
     cfg.clientSecret = process.env[cfg.clientSecretKey];
 
-    if (!cfg.clientId || !cfg.clientSecret) {
-      throw new Error(`MISSING REQUIRED ENV VARS. ${cfg.clientIdKey} and ${cfg.clientSecretKey} are required.`)
+    if( this.provider === "stackexchange" ){
+      cfg.keyValue = process.env[cfg.key];
     }
-
+    
+    switch ( this.provider ) {
+      case "stackoverflow":
+        if (!cfg.clientId || !cfg.clientSecret || !cfg.keyValue ) {
+          throw new Error(`MISSING REQUIRED ENV VARS. ${cfg.clientIdKey}, ${cfg.clientSecretKey}, ${cfg.key }are required.`)
+        }
+        break;
+      default:
+        if (!cfg.clientId || !cfg.clientSecret) {
+          throw new Error(`MISSING REQUIRED ENV VARS. ${cfg.clientIdKey} and ${cfg.clientSecretKey} are required.`)
+        }
+    }
     return cfg;
   }
 
