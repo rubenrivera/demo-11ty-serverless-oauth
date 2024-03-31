@@ -23,7 +23,7 @@ const github = {
 
   /* User API endpoint */
   userApi: "https://api.github.com/user",
-};
+}
 
 // https://docs.gitlab.com/ee/api/oauth2.html
 const gitlab = {
@@ -75,10 +75,27 @@ const linkedin = {
   userApi: "https://api.linkedin.com/v2/me?projection=(id,localizedFirstName,localizedLastName,profilePicture(displayImage~digitalmediaAsset:playableStreams))",
 }
 
+const stackoverflow = {
+  clientIdKey: "STACKOVERFLOW_OAUTH_CLIENT_ID",
+  clientSecretKey: "STACKOVERFLOW_OAUTH_CLIENT_SECRET",
+
+  /* OAuth API endpoints */
+  tokenHost: "https://stackoverflow.com",
+  tokenPath: "https://stackoverflow.com/oauth/accessToken/json",
+  authorizePath: "https://stackoverflow.com/oauth",
+
+  /* Scope of access to request */
+  // scope: '',
+
+  /* User API endpoint */
+  userApi: "https://api.stackexchange.com/2.3/me",
+}
+
 module.exports = {
   netlify,
   github,
   gitlab,
   slack,
-  linkedin
+  linkedin,
+  stackoverflow
 };
