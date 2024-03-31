@@ -16,6 +16,8 @@ const github = {
   clientIdKey: "GITHUB_OAUTH_CLIENT_ID",
   clientSecretKey: "GITHUB_OAUTH_CLIENT_SECRET",
 
+  /* Stack Overflow higher request quota*/
+
   /* OAuth API endpoints */
   tokenHost: "https://github.com/",
   tokenPath: "https://github.com/login/oauth/access_token",
