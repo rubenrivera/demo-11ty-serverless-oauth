@@ -12,6 +12,10 @@ class OAuth {
     this.provider = provider;
 
     let config = this.config;
+    /* Stack Overflow gives a key to get higher quotas */
+    if(config.provider === "stackoeverflow"){
+      ["tokenHost","tokenPath","authorizePath"].forEach( a => config[a] + "?key=" + config.keyValue);
+    }
     this.authorizationCode = new AuthorizationCode({
       client: {
         id: config.clientId,
