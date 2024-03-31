@@ -6,3 +6,5 @@ package-lock.json
 .netlify
 netlify/functions/dynamic/**
 !netlify/functions/dynamic/index.js
+# Branch
+README.md
