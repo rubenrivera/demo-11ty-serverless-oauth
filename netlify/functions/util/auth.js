@@ -63,6 +63,7 @@ class OAuth {
 
     if( this.provider === "stackexchange" ){
       cfg.keyValue = process.env[cfg.key];
+      cfg.userApi += `/2.3/me?order=desc&sort=reputation&site=stackoverflow&key=${cfg.keyValue}`;
     }
     
     switch ( this.provider ) {
